@@ -3,6 +3,8 @@
 Apply to any textarea on the page and let it automatically resize to fit  
 any text typed or pasted inside.
 
+Demo: <http://jsfiddle.net/bs5dLx7g/8/>
+
 ## Usage
 
 Autosizer can be inserted into page as an ordinary script, or it could be  
