@@ -1,0 +1,20 @@
+{
+  "name": "autosizer",
+  "version": "0.1.0",
+  "description": "Resize textarea to fit in text.",
+  "keywords": ["input", "text", "size", "resize", "fit""plugin"],
+  "author": {
+    "name": "Kane Cohen",
+    "email": "kanecohen@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KaneCohen/autosizer.git"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/KaneCohen/autosizer/blob/master/LICENSE"
+    }
+  ]
+}
