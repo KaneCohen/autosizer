@@ -11,8 +11,8 @@
   var hasModule = (typeof module !== 'undefined' && module.exports),
       cloneStyles = {
         position: 'fixed',
-        top: 0,
-        left: -9999,
+        top: '-9999px',
+        left: '-9999px',
         height: 'auto',
         overflow: 'hidden',
         overflowY: 'hidden',
@@ -22,7 +22,7 @@
       },
       defaults = {
         maxHeight: null,
-        styles: ['width', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight',
+        styles: ['width', 'padding', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight',
                  'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing',
                  'textIndent', 'boxSizing'
         ]
@@ -133,6 +133,16 @@
         }
       }
       return target;
+    },
+
+    scrollTop: function(top) {
+      var doc = document.documentElement;
+      if (typeof top === 'undefined') {
+        return (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+      } else {
+        var left = (window.pageXOffset || doc.scrollLeft) - (doc.clientLeft || 0);
+        window.scrollTo(left, top);
+      }
     }
 
   };
@@ -158,8 +168,8 @@
     });
     util.extend(styles, cloneStyles);
 
-    for(var k in styles) {
-      if(styles.hasOwnProperty(k)) {
+    for (var k in styles) {
+      if (styles.hasOwnProperty(k)) {
         clone.style[k] = styles[k];
       }
     }
@@ -189,17 +199,18 @@
   }
 
   function update(a) {
-    requestAnimationFrame(function() {
-      if (a._clone) {
-        a._clone.style.top = '-9999px';
-        a._clone.value = a.el.value;
-        a._clone.style.height = 'auto';
-        a._clone.style.height = a._clone.scrollHeight + 'px';
-        if (a.o.maxHeight === null || a.o.maxHeight > parseInt(a._clone.style.height, 10)) {
-          a.el.style.height = a._clone.style.height;
-        }
+    var diff, bottom;
+    if (a._clone) {
+      a._clone.value = a.el.value;
+      a._clone.style.height = 'auto';
+      a._clone.style.height = a._clone.scrollHeight - (parseInt(a._clone.style.paddingTop) + parseInt(a._clone.style.paddingBottom)) + 'px';
+      if (a.o.maxHeight === null || a.o.maxHeight > parseInt(a._clone.style.height, 10)) {
+        bottom = a.el.getBoundingClientRect().bottom;
+        a.el.style.height = a._clone.style.height;
+        diff = a.el.getBoundingClientRect().bottom - bottom;
+        util.scrollTop(util.scrollTop() + diff);
       }
-    });
+    }
   }
 
   function Autosizer(el, options) {
