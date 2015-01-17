@@ -1,20 +1,26 @@
 {
   "name": "autosizer",
-  "version": "0.1.0",
-  "description": "Resize textarea to fit in text.",
-  "keywords": ["input", "text", "size", "resize", "fit""plugin"],
+  "version": "0.2.0",
   "author": {
     "name": "Kane Cohen",
     "email": "kanecohen@gmail.com"
   },
+  "description": "Automatically resize textarea to fit text when typing.",
+  "keywords": ["input", "text", "resize", "fit", "plugin"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/KaneCohen/autosizer.git"
+    "url": "git://github.com/KaneCohen/autosizer.git"
   },
   "licenses": [
     {
       "type": "BSD",
-      "url": "https://github.com/KaneCohen/autosizer/blob/master/LICENSE"
+      "url": "https://github.com/KaneCohen/autosizer/master/LICENSE"
     }
-  ]
+  ],
+  "devDependencies": {
+    "gulp": "~3.8.10",
+    "gulp-uglifyjs": "~0.5.0",
+    "gulp-nodeunit-runner": "~0.2.2",
+    "gulp-jshint": "~1.9.0"
+  }
 }
