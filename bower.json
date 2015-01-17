@@ -1,0 +1,8 @@
+{
+  "name": "autosizer",
+  "version": "0.2.0",
+  "main": "lib/autosizer.js",
+  "ignore": [],
+  "keywords": ["input", "text", "resize", "fit", "plugin"],
+  "dependencies": {}
+}
