@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.0.0
+	 * autosizer 1.1.0
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -109,24 +109,10 @@ module.exports =
 	    this.o = Object.assign({}, _defaults, options);
 	    this._events = {};
 
-	    this._styleSetup();
 	    this._setListeners();
 	  }
 
 	  _createClass(Autosizer, [{
-	    key: '_styleSetup',
-	    value: function _styleSetup() {
-	      var maxHeight = this.el.style.maxHeight;
-	      this._overflow = this.el.style.overflow;
-	      if (maxHeight !== '') {
-	        maxHeight = parseInt(maxHeight, 10);
-	      } else {
-	        maxHeight = null;
-	        this.el.style.overflow = 'hidden';
-	      }
-	      this.o.maxHeight = maxHeight;
-	    }
-	  }, {
 	    key: '_createClone',
 	    value: function _createClone() {
 	      var styles = {};
@@ -186,6 +172,7 @@ module.exports =
 	      if (!this.clone) {
 	        this._createClone(this);
 	      }
+
 	      var diff = 0;
 	      var bottom = 0;
 	      var o = this.o;
@@ -193,18 +180,16 @@ module.exports =
 	      var clone = this.clone;
 
 	      clone.value = el.value;
-	      clone.style.height = 'auto';
-	      clone.style.height = clone.scrollHeight + parseInt(clone.style.paddingTop, 10) + 'px';
 
-	      if (o.maxHeight === null || o.maxHeight > parseInt(clone.style.height, 10)) {
-	        if (o.follow) {
-	          bottom = el.getBoundingClientRect().bottom;
-	          el.style.height = clone.style.height;
-	          diff = el.getBoundingClientRect().bottom - bottom;
-	          scrollTop(scrollTop() + diff);
-	        } else {
-	          el.style.height = clone.style.height;
-	        }
+	      var rows = Math.ceil((clone.scrollHeight - (parseInt(clone.style.paddingTop, 10) + parseInt(clone.style.paddingBottom, 10))) / parseFloat(clone.style.lineHeight));
+
+	      if (o.follow) {
+	        bottom = el.getBoundingClientRect().bottom;
+	        el.setAttribute('rows', rows);
+	        diff = el.getBoundingClientRect().bottom - bottom;
+	        scrollTop(scrollTop() + diff);
+	      } else {
+	        el.setAttribute('rows', rows);
 	      }
 
 	      if (!this.isFocused) {
