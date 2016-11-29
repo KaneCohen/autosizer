@@ -13,14 +13,8 @@ loaded as an AMD or CommonJS module.
 Autosizer also support usage as a jQuery plugin, but jQuery is **not required**.
 
 ````
-// Use as a jQuery plugin.
-$('textarea').autosizer();
-
-// Use as an AMD module.
-define(['autosizer', function(autosizer) {
-  var el = document.getElementById('my-text');
-  var as = new autosizer(el);
-});
+var Autosizer = require('autosizer');
+var as = new Autosizer('.my-textarea');
 ````
 
 ## Options

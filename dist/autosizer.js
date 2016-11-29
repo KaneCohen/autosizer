@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.1.0
+	 * autosizer 1.2.0
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -108,8 +108,9 @@ module.exports =
 
 	    this.o = Object.assign({}, _defaults, options);
 	    this._events = {};
-
 	    this._setListeners();
+
+	    this.el.autosizer = this;
 	  }
 
 	  _createClass(Autosizer, [{
@@ -209,6 +210,7 @@ module.exports =
 
 	      this.el.removeEventListener('focusin', this._events.onFocusIn);
 	      this.el.removeEventListener('focusout', this._events.onFocusOut);
+	      delete el.autosizer;
 	    }
 	  }]);
 
