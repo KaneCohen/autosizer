@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.2.1
+	 * autosizer 1.2.2
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -116,24 +116,23 @@ module.exports =
 	  _createClass(Autosizer, [{
 	    key: '_createClone',
 	    value: function _createClone() {
-	      var styles = {};
 	      var el = this.el;
 
 	      var clone = document.createElement('textarea');
 	      var computedStyles = window.getComputedStyle(el);
 
-	      this.o.styles.forEach(function (style) {
+	      var styles = this.o.styles.reduce(function (styles, style) {
 	        styles[style] = computedStyles[style];
-	      });
+	        return styles;
+	      }, {});
 
-	      Object.assign(styles, _cloneStyles);
-	      Object.keys(styles).forEach(function (key) {
-	        clone.style[key] = styles[key];
-	      });
+	      Object.assign(clone.style, styles, _cloneStyles);
+	      this.o.attributes.forEach(function (attr) {
+	        clone.setAttribute(attr, el.getAttribute(attr));
+	      }, {});
 
 	      clone.value = el.value;
 	      document.body.appendChild(clone);
-
 	      this.clone = clone;
 	    }
 	  }, {
