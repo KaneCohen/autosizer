@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.2.4
+	 * autosizer 1.2.5
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
