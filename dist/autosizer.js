@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.2.3
+	 * autosizer 1.2.4
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -184,15 +184,20 @@ module.exports =
 
 	      clone.value = el.value;
 
+	      clone.setAttribute('rows', el.getAttribute('rows') || 2);
+
 	      var rows = Math.ceil((clone.scrollHeight - (parseInt(clone.style.paddingTop, 10) + parseInt(clone.style.paddingBottom, 10))) / parseFloat(clone.style.lineHeight));
+
+	      clone.setAttribute('rows', rows);
+	      var height = clone.getBoundingClientRect().height;
 
 	      if (o.follow) {
 	        bottom = el.getBoundingClientRect().bottom;
-	        el.setAttribute('rows', rows);
+	        el.style.height = height + 'px';
 	        diff = el.getBoundingClientRect().bottom - bottom;
 	        scrollTop(scrollTop() + diff);
 	      } else {
-	        el.setAttribute('rows', rows);
+	        el.style.height = height + 'px';
 	      }
 
 	      if (!this.isFocused) {
