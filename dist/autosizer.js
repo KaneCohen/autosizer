@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.3.0
+	 * autosizer 1.3.1
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -88,7 +88,7 @@ module.exports =
 	  isFocused: false,
 	  maxHeight: null,
 	  follow: true,
-	  styles: ['width', 'padding', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing', 'textIndent', 'boxSizing'],
+	  styles: ['width', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing', 'textIndent', 'boxSizing'],
 	  attributes: ['rows']
 	};
 
@@ -199,7 +199,7 @@ module.exports =
 
 	      clone.setAttribute('rows', el.getAttribute('rows') || 2);
 
-	      var rows = Math.ceil((clone.scrollHeight - (parseInt(clone.style.paddingTop, 10) + parseInt(clone.style.paddingBottom, 10))) / parseFloat(clone.style.lineHeight));
+	      var rows = Math.ceil((clone.scrollHeight - (parseInt(clone.style.paddingTop || 0, 10) + parseInt(clone.style.paddingBottom || 0, 10))) / parseFloat(clone.style.lineHeight));
 
 	      clone.setAttribute('rows', rows);
 	      var height = clone.getBoundingClientRect().height;
