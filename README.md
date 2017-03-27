@@ -3,7 +3,7 @@
 Apply to any textarea on the page and let it automatically resize to fit  
 any text typed or pasted inside.
 
-Demo: <http://jsfiddle.net/bs5dLx7g/8/>
+Demo: <http://kanecohen.github.io/autosizer/>
 
 ## Usage
 
