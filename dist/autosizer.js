@@ -47,7 +47,7 @@ module.exports =
 
 	/**
 	 * Automatically resize textarea to fit text when typing.
-	 * autosizer 1.3.2
+	 * autosizer 1.3.3
 	 * Kane Cohen [KaneCohen@gmail.com] | https://github.com/KaneCohen
 	 * Copyright 2016 Kane Cohen <https://github.com/KaneCohen>
 	 * Available under BSD-3-Clause license
@@ -88,7 +88,7 @@ module.exports =
 	  isFocused: false,
 	  maxHeight: null,
 	  follow: true,
-	  styles: ['width', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing', 'textIndent', 'boxSizing'],
+	  styles: ['width', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderTop', 'borderBottom', 'borderLeft', 'borderRight', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing', 'textIndent', 'boxSizing'],
 	  attributes: ['rows']
 	};
 
