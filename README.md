@@ -21,17 +21,8 @@ var as = new Autosizer('.my-textarea');
 
 Besides an element, autosizer accepts an object with several possible options  
 
-`maxHeight: null` (default) Set up a maximum height textarea could be resized up to.  
-This option could be also set up via CSS as a `max-height` rule on a textarea.
-
 `follow: true` When set to true, scrollbar will always try to stay in a constant  
 position related to where typing caret is located.
 
-`styles: []` List of styles which Autosizer will go over when creating invisible  
-clone of a textarea. In most cases it should be left unchanged, since Autosizer  
-covers most of the rules which might affect textarea.
-
-Default styles are:  
-'width', 'lineHeight', 'fontFamily', 'fontSize', 'fontWeight',  
-'fontStyle', 'letterSpacing', 'textTransform', 'wordSpacing',  
-'textIndent', 'boxSizing'
+`viewportMargin: null` Limits maximum height before textarea hits bottom of the  
+viewport.

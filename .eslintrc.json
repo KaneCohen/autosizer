@@ -1,0 +1,12 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off"
+  },
+  "overrides": [
+    {
+      "files": ["prettier.config.js"],
+      "parser": "espree"
+    }
+  ]
+}

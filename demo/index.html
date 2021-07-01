@@ -54,10 +54,10 @@ Gregor then turned to look out the window at the dull weather. Drops of rain cou
         <p>Tokenfield is distributed under BSD-3-Clause license</p>
       </div>
     </footer>
-    <script src="../dist/autosizer.min.js?t=1"></script>
+    <script src="../dist.browser/index.js?t=1"></script>
     <script>
-      var autosizer = new Autosizer(document.querySelector('.js-textarea')).update();
-      var autosizer = new Autosizer(document.querySelector('.js-textarea-blank')).update();
+      var autosizer = new Autosizer.default(document.querySelector('.js-textarea')).resize();
+      var autosizer = new Autosizer.default(document.querySelector('.js-textarea-blank'), {maxHeight: 100}).resize();
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -1,29 +1,50 @@
 {
   "name": "autosizer",
-  "version": "1.3.3",
+  "version": "2.0.0",
   "author": {
     "name": "Kane Cohen",
     "email": "kanecohen@gmail.com"
   },
   "description": "Automatically resize textarea to fit text when typing.",
-  "keywords": ["input", "text", "resize", "fit", "textarea"],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/KaneCohen/autosizer.git"
-  },
+  "keywords": [
+    "input",
+    "text",
+    "resize",
+    "fit",
+    "textarea"
+  ],
+  "repository": "github:KaneCohen/autosizer",
   "license": "BSD-3-Clause",
-  "devDependencies": {
-    "babel": "5.8.23",
-    "babel-eslint": "4.1.7",
-    "babel-loader": "5.1.4",
-    "eslint": "1.10.3",
-    "eslint-loader": "1.2.0",
-    "webpack": "1.12.11"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "lint": "eslint lib",
-    "build": "node build.js",
-    "prepublish": "npm run build"
+    "clean": "rm -rf dist",
+    "lint": "eslint src/*.ts",
+    "prebuild": "npm run clean && npm run lint && mkdir dist",
+    "build": "tsc && webpack",
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm publish --ignore-scripts --@github:registry='https://npm.pkg.github.com'"
   },
-  "main": "dist/autosizer.js"
+  "devDependencies": {
+    "@types/node": "^15.12.5",
+    "@typescript-eslint/parser": "^4.28.1",
+    "chai": "^4.2.0",
+    "eslint": "^7.9.0",
+    "karma": "^5.2.2",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "mocha": "^7.1.0",
+    "typescript": "^4.0.3",
+    "webpack": "^5.41.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "eslintIgnore": [
+    "dist/"
+  ]
 }
