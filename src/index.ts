@@ -1,6 +1,7 @@
 const defaults = {
   viewportMargin: null,
   follow: true,
+  triggers: ['input', 'change', 'focus']
 };
 
 function scrollTop(top: number | void): number {
@@ -20,6 +21,7 @@ interface AutosizerElement extends HTMLTextAreaElement {
 type Options = {
   viewportMargin: number | null;
   follow: boolean;
+  triggers: string[];
 };
 
 class Autosizer {
@@ -41,11 +43,12 @@ class Autosizer {
   }
 
   private initListeners() {
-    this.onInput = this.onInput.bind(this);
+    this.onTrigger = this.onTrigger.bind(this);
     this.onResize = this.onResize.bind(this);
 
-    this.el.addEventListener('input', this.onInput);
-    this.el.addEventListener('change', this.onInput);
+    this.options.triggers.forEach((event: string) => {
+      this.el.addEventListener(event, this.onTrigger);
+    });
     this.el.addEventListener('mousemove', this.onResize);
 
     if (this.el.form) {
@@ -54,7 +57,7 @@ class Autosizer {
     }
   }
 
-  private onInput(): void {
+  private onTrigger(): void {
     this.resize();
   }
 
@@ -130,8 +133,9 @@ class Autosizer {
   }
 
   destroy() {
-    this.el.removeEventListener('input', this.onInput);
-    this.el.removeEventListener('change', this.onInput);
+    this.options.triggers.forEach((event: string) => {
+      this.el.removeEventListener(event, this.onTrigger);
+    });
     this.el.removeEventListener('mousemove', this.onResize);
     this.el.removeEventListener('reset', this.onReset);
 
